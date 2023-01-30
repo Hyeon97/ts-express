@@ -1,16 +1,19 @@
-import express, { Request, Response, NextFunction } from 'express';
-
-const app = express();
+import 'dotenv/config'
+import express, { Request, Response, NextFunction } from 'express'
+import router from "./router/index"
+const app = express()
 
 
 app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
-  res.send('welcome!');
-});
+  res.send('welcome!')
+})
 
-app.listen('1234', () => {
+app.use("/router", router)
+
+app.listen(process.env.PORT, () => {
   console.log(`
   ################################################
-  🛡️  Server listening on port: 1234🛡️
+  🛡️  Server listening on port: ${process.env.PORT}🛡️
   ################################################
-`);
-});
+`)
+})
